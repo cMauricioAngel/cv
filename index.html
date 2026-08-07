@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mauricio Champi Mamani — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:        #0f0f11;
+      --surface:   #1a1a1f;
+      --card:      #222228;
+      --border:    #2e2e36;
+      --text:      #e4e4e7;
+      --text-dim:  #a1a1aa;
+      --accent:    #06b6d4;
+      --accent2:   #8b5cf6;
+      --accent3:   #f59e0b;
+      --green:     #10b981;
+      --radius:    12px;
+      --font:      'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; color: #111; }
+      .cv-container { max-width: 100%; padding: 0; }
+      .header::before { display: none; }
+      .card { background: #f9f9f9; border-color: #ddd; }
+      .tag { color: #fff !important; }
+      a { color: #06b6d4; }
+      .print-btn { display: none !important; }
+    }
+
+    /* ── Layout ── */
+    .cv-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* ── Print Button ── */
+    .print-btn {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      box-shadow: 0 2px 12px rgba(6,182,212,.3);
+    }
+    .print-btn:hover { opacity: 0.85; }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 3rem 2rem 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--surface) 0%, #16161a 100%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(6,182,212,.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(139,92,246,.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      box-shadow: 0 4px 20px rgba(6,182,212,.25);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+      position: relative;
+    }
+
+    .subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.2rem;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      position: relative;
+    }
+
+    .contact-row a {
+      color: var(--text-dim);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .contact-row a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(6,182,212,.06);
+    }
+
+    .contact-row svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 2rem; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .section-title .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .icon-about   { background: rgba(6,182,212,.15); color: var(--accent); }
+    .icon-skills  { background: rgba(139,92,246,.15); color: var(--accent2); }
+    .icon-projects{ background: rgba(16,185,129,.15); color: var(--green); }
+    .icon-edu     { background: rgba(245,158,11,.15); color: var(--accent3); }
+    .icon-lang    { background: rgba(244,63,94,.15);  color: #f43f5e; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .card:hover {
+      border-color: rgba(6,182,212,.3);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .card-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .card-title a:hover { color: var(--accent); }
+
+    .card-meta {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin-bottom: 0.7rem;
+      line-height: 1.55;
+    }
+
+    /* ── Tags ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,.05);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    .tag-html     { background: rgba(245,158,11,.1);  color: #f59e0b; border-color: rgba(245,158,11,.25); }
+    .tag-js       { background: rgba(245,158,11,.1);  color: #f59e0b; border-color: rgba(245,158,11,.25); }
+    .tag-css      { background: rgba(6,182,212,.1);   color: var(--accent); border-color: rgba(6,182,212,.25); }
+    .tag-python   { background: rgba(16,185,129,.1);  color: var(--green); border-color: rgba(16,185,129,.25); }
+    .tag-java     { background: rgba(244,63,94,.1);   color: #f43f5e; border-color: rgba(244,63,94,.25); }
+    .tag-tailwind { background: rgba(6,182,212,.1);   color: var(--accent); border-color: rgba(6,182,212,.25); }
+    .tag-canvas   { background: rgba(139,92,246,.1);  color: var(--accent2); border-color: rgba(139,92,246,.25); }
+    .tag-vanilla  { background: rgba(245,158,11,.1);  color: #f59e0b; border-color: rgba(245,158,11,.25); }
+    .tag-learning { background: rgba(255,255,255,.05); color: var(--text-dim); border-color: var(--border); }
+    .tag-github   { background: rgba(255,255,255,.05); color: var(--text-dim); border-color: var(--border); }
+
+    /* ── Skills Grid ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .skill-group h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-group .tags { gap: 0.35rem; }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    /* ── Education ── */
+    .edu-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .edu-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(245,158,11,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      color: var(--accent3);
+    }
+
+    .edu-details h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .edu-details p {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    /* ── Languages ── */
+    .lang-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .lang-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .lang-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .lang-dot.active { background: var(--accent); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .cv-container { padding: 1rem; }
+      h1 { font-size: 1.4rem; }
+      .contact-row { font-size: 0.75rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .card { padding: 1rem; }
+      header { padding: 2rem 1.2rem 1.8rem; }
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section { animation: fadeInUp 0.5s ease both; }
+    .section:nth-child(2) { animation-delay: 0.08s; }
+    .section:nth-child(3) { animation-delay: 0.16s; }
+    .section:nth-child(4) { animation-delay: 0.24s; }
+    .section:nth-child(5) { animation-delay: 0.32s; }
+    .section:nth-child(6) { animation-delay: 0.40s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .section { animation: none; }
+      .card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()" aria-label="Imprimir CV">🖨️ Imprimir</button>
+
+<div class="cv-container">
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header>
+    <div class="avatar">MC</div>
+    <h1>Mauricio Angel Champi Mamani</h1>
+    <p class="subtitle">Estudiante de Ingeniería de Sistemas e Informática</p>
+    <div class="contact-row">
+      <a href="mailto:61278302@continental.edu.pe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        61278302@continental.edu.pe
+      </a>
+      <a href="https://wa.me/51961071075">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        961 071 075
+      </a>
+      <a href="https://www.linkedin.com/in/mauriciochampi" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        mauriciochampi
+      </a>
+      <a href="https://github.com/cMauricioAngel" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        cMauricioAngel
+      </a>
+      <a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Huancayo, Junín, Perú
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══════════════ ABOUT ═══════════════ -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="icon icon-about">👨‍💻</span>
+      Sobre mí
+    </h2>
+    <p class="about-text">
+      Estudiante de <strong>Ingeniería de Sistemas e Informática</strong> (2do ciclo) en la 
+      <strong>Universidad Continental</strong>. Apasionado por el <strong>desarrollo web</strong> y la 
+      <strong>programación</strong>, con proyectos prácticos que reflejan mi compromiso por aprender 
+      construyendo. Busco oportunidades de <strong>prácticas preprofesionales</strong> donde pueda 
+      aplicar mis conocimientos, contribuir al equipo y seguir creciendo profesionalmente. 
+      Autodidacta, curioso y orientado a resultados.
+    </p>
+  </section>
+
+  <!-- ═══════════════ SKILLS ═══════════════ -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="icon icon-skills">⚡</span>
+      Habilidades técnicas
+    </h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Lenguajes</h4>
+        <div class="tags">
+          <span class="tag tag-python">Python</span>
+          <span class="tag tag-java">Java</span>
+          <span class="tag tag-js">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Desarrollo Web</h4>
+        <div class="tags">
+          <span class="tag tag-html">HTML5</span>
+          <span class="tag tag-css">CSS3</span>
+          <span class="tag tag-tailwind">Tailwind CSS</span>
+          <span class="tag tag-vanilla">JS Vanilla</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Herramientas</h4>
+        <div class="tags">
+          <span class="tag tag-github">Git & GitHub</span>
+          <span class="tag tag-learning">VS Code</span>
+          <span class="tag tag-learning">GitHub Pages</span>
+          <span class="tag tag-canvas">HTML5 Canvas</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>En formación</h4>
+        <div class="tags">
+          <span class="tag tag-learning">Bases de datos</span>
+          <span class="tag tag-learning">Redes</span>
+          <span class="tag tag-learning">Linux</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROJECTS ═══════════════ -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="icon icon-projects">🚀</span>
+      Proyectos
+    </h2>
+
+    <!-- Project 1 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">
+          <a href="https://github.com/cMauricioAngel/prompt-library" target="_blank">📚 Prompt Library — Enciclopedia Interactiva de PNL</a>
+        </span>
+        <span class="card-meta">ago 2026</span>
+      </div>
+      <p class="card-desc">
+        Plataforma educativa sobre Programación Neurolinguística con contenido interactivo.
+        Incluye diagramas Mermaid, fórmulas matemáticas con KaTeX y diseño responsivo con Tailwind CSS.
+      </p>
+      <div class="tags">
+        <span class="tag tag-html">HTML5</span>
+        <span class="tag tag-css">CSS3</span>
+        <span class="tag tag-tailwind">Tailwind CSS</span>
+        <span class="tag tag-learning">Mermaid</span>
+        <span class="tag tag-learning">KaTeX</span>
+        <span class="tag tag-github">GitHub Pages</span>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">
+          <a href="https://github.com/cMauricioAngel/Demo_curso" target="_blank">💻 Demo Curso — IDE Web para Fundamentos de Programación</a>
+        </span>
+        <span class="card-meta">ago 2026</span>
+      </div>
+      <p class="card-desc">
+        Plataforma web interactiva tipo IDE diseñada para enseñar fundamentos de programación.
+        Arquitectura modular con JavaScript vanilla y diseño estético brutalist.
+      </p>
+      <div class="tags">
+        <span class="tag tag-html">HTML5</span>
+        <span class="tag tag-css">CSS3</span>
+        <span class="tag tag-js">JavaScript</span>
+        <span class="tag tag-vanilla">JS Vanilla</span>
+        <span class="tag tag-learning">Módulos ES</span>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">
+          <a href="https://github.com/cMauricioAngel/juego-2d-js" target="_blank">🎮 Juego 2D con JavaScript y Canvas</a>
+        </span>
+        <span class="card-meta">ago 2026</span>
+      </div>
+      <p class="card-desc">
+        Prototipo de videojuego 2D construido como proyecto de aprendizaje. Implementa 
+        lógica de juego, renderizado con HTML5 Canvas y diseño visual con CSS.
+      </p>
+      <div class="tags">
+        <span class="tag tag-html">HTML5</span>
+        <span class="tag tag-js">JavaScript</span>
+        <span class="tag tag-canvas">HTML5 Canvas</span>
+        <span class="tag tag-css">CSS3</span>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">
+          <a href="https://github.com/cMauricioAngel/Esqueleto-web" target="_blank">🦴 Esqueleto Web — Plantilla Starter</a>
+        </span>
+        <span class="card-meta">ago 2026</span>
+      </div>
+      <p class="card-desc">
+        Plantilla base (boilerplate) para proyectos web simples con HTML5, CSS y JavaScript vanilla.
+        Sin dependencias externas, lista para clonar y personalizar.
+      </p>
+      <div class="tags">
+        <span class="tag tag-html">HTML5</span>
+        <span class="tag tag-css">CSS3</span>
+        <span class="tag tag-js">JavaScript</span>
+        <span class="tag tag-github">Boilerplate</span>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">
+          <a href="https://github.com/cMauricioAngel/mi-ruta-de-aprendizaje" target="_blank">📝 Mi Ruta de Aprendizaje</a>
+        </span>
+        <span class="card-meta">ago 2026</span>
+      </div>
+      <p class="card-desc">
+        Cuaderno de estudio personal: registro cronológico y temático de mi ruta de aprendizaje
+        en desarrollo de software. Documentación viva de mi progreso.
+      </p>
+      <div class="tags">
+        <span class="tag tag-github">Documentación</span>
+        <span class="tag tag-learning">Markdown</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ EDUCATION ═══════════════ -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="icon icon-edu">🎓</span>
+      Educación
+    </h2>
+    <div class="card">
+      <div class="edu-item">
+        <div class="edu-icon">🏛️</div>
+        <div class="edu-details">
+          <h3>Ingeniería de Sistemas e Informática</h3>
+          <p>Universidad Continental — Huancayo, Perú</p>
+          <p>2do ciclo · Marzo 2026 – actualidad</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ LANGUAGES ═══════════════ -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="icon icon-lang">🌐</span>
+      Idiomas
+    </h2>
+    <div class="lang-list">
+      <div class="lang-item">
+        Español
+        <div class="lang-dots">
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+        </div>
+      </div>
+      <div class="lang-item">
+        Quechua
+        <div class="lang-dots">
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot"></span>
+        </div>
+      </div>
+      <div class="lang-item">
+        Inglés
+        <div class="lang-dots">
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot active"></span>
+          <span class="lang-dot"></span>
+          <span class="lang-dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <p>Hecho con 💪 por <a href="https://github.com/cMauricioAngel" target="_blank">Mauricio Champi</a> · 2026</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
